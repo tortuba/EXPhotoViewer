@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UIColor *backgroundColor;
 
 @property (atomic, readonly) BOOL isClosing;
-
++ (instancetype)showImageFrom:(UIImageView *)imageView inParent:(UIViewController *)parentController;
 + (instancetype)showImageFrom:(UIImageView *)imageView;
 + (instancetype)newViewerFor:(UIImageView *)imageView;
 

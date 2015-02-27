@@ -23,6 +23,14 @@
 
 @implementation EXPhotoViewer
 
++ (instancetype)showImageFrom:(UIImageView *)imageView inParent:(UIViewController *)parentController {
+    EXPhotoViewer *viewer = [self newViewerFor:imageView];
+    
+    [viewer show:parentController];
+    
+    return viewer;
+}
+
 + (instancetype)showImageFrom:(UIImageView *)imageView {
     EXPhotoViewer *viewer = [self newViewerFor:imageView];
 
@@ -72,10 +80,14 @@
 }
 
 - (void)show {
+    [self show:nil];
+}
+
+- (void)show:(UIViewController *)parentController {
     if (self.controller)
         return;
 
-    UIViewController * controller = [self rootViewController];
+    UIViewController * controller = parentController != nil ? parentController : [self rootViewController];
     
     self.tempViewContainer = [[UIView alloc] initWithFrame:controller.view.bounds];
     self.tempViewContainer.backgroundColor = controller.view.backgroundColor;
